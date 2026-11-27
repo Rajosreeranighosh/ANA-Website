@@ -13,27 +13,43 @@ permissions:
   pages: write
   id-token: write
 
+# Serialize production deployments; do not cancel an active Pages deployment.
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
+  validate:
+    name: Validate static website
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Validate pages and local links
+        run: node scripts/check-site.mjs
+
   deploy:
+    name: Deploy to GitHub Pages
+    needs: validate
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Check out source
         uses: actions/checkout@v4
       - name: Configure Pages
         uses: actions/configure-pages@v5
-        with:
-          enablement: true
+      - name: Assemble public site
+        run: |
+          mkdir -p _site/assets
+          cp index.html status.html explorer.html 404.html script.js _site/
+          cp -R assets/. _site/assets/
+          cp robots.txt sitemap.xml _site/
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: _site
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

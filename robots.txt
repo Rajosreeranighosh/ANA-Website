@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rajosreeranighosh.github.io/ANA-Website/sitemap.xml

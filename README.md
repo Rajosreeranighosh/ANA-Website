@@ -8,7 +8,27 @@ The public-facing website for **ANA Blockchain**. This repository is intentional
 - Expected GitHub Pages address: https://rajosreeranighosh.github.io/ANA-Website/
 - Blockchain source: https://github.com/Rajosreeranighosh/ANA-Blockchain
 
-The Pages workflow in `.github/workflows/pages.yml` deploys the static site when files other than this README change on `main`, or when manually dispatched. The site is plain HTML, CSS, and JavaScript; no build step or package installation is required.
+The site is plain HTML, CSS, and JavaScript. There is no package installation or build framework.
+
+## One-time GitHub Pages setup
+
+The first deployment requires Pages to be enabled by a repository administrator:
+
+1. Open **Settings → Pages** in this repository.
+2. Under **Build and deployment**, set **Source** to **GitHub Actions**.
+3. Save the setting, then open **Actions → Deploy ANA Website** and rerun the latest workflow (or push a site change).
+
+The workflow intentionally does not try to create the Pages site using `GITHUB_TOKEN`: GitHub's Pages site-creation endpoint requires elevated administration permission that this workflow token does not have. Once Pages is enabled in Settings, the workflow can deploy with its scoped `pages: write` and `id-token: write` permissions.
+
+## Validation
+
+Run the built-in, dependency-free link and page checks locally with:
+
+```sh
+node scripts/check-site.mjs
+```
+
+The validation job runs before every deployment. It checks required pages, metadata, local links, in-page anchors, and the sitemap/robots files.
 
 ## Accuracy and safety
 
