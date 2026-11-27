@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090d18"><meta name="description" content="ANA Blockchain explorer preview. Live chain data is unavailable until a verified node API is published.">
+<meta name="color-scheme" content="dark"><title>ANA Explorer — Network data unavailable</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<style>
+:root{color-scheme:dark;--bg:#090d18;--panel:#111a2b;--line:#25334b;--text:#edf3ff;--muted:#9eacc4;--cyan:#63e4df;--amber:#e8c27b}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 75% 5%,#173454 0,transparent 34%),var(--bg);color:var(--text);font:16px/1.65 system-ui,-apple-system,Segoe UI,sans-serif}.wrap{width:min(1000px,calc(100% - 36px));margin:auto}a{color:var(--cyan);text-decoration:none}a:hover{text-decoration:underline}.nav{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff18}.brand{color:var(--text);font-weight:850;letter-spacing:.12em}.mark{display:inline-grid;place-items:center;width:34px;height:34px;margin-right:9px;border:1px solid #63e4df88;border-radius:10px;color:var(--cyan)}.hero{padding:76px 0 35px}.eyebrow{color:var(--cyan);font-size:12px;font-weight:800;letter-spacing:.2em;text-transform:uppercase}.hero h1{font-size:clamp(40px,7vw,68px);line-height:1.05;letter-spacing:-.05em;margin:14px 0}.muted{color:var(--muted)}.panel{border:1px solid var(--line);background:linear-gradient(145deg,#141f33,#0e1625);border-radius:16px;padding:25px;margin:20px 0}.state{display:inline-flex;align-items:center;gap:9px;color:var(--amber);font-size:12px;font-weight:850;letter-spacing:.1em;text-transform:uppercase}.dot{width:9px;height:9px;border-radius:50%;background:var(--amber)}.panel h2{margin:12px 0 6px;font-size:24px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:22px 0}.tile{border:1px solid var(--line);border-radius:13px;padding:18px;background:#ffffff06}.tile strong{display:block;font-size:18px}.tile span{font-size:13px;color:var(--muted)}.actions{display:flex;gap:14px;flex-wrap:wrap;margin:25px 0 60px}.btn{display:inline-block;padding:11px 16px;border:1px solid var(--line);border-radius:9px;font-weight:700}.btn.primary{background:var(--cyan);color:#07131c;border-color:var(--cyan)}.footer{border-top:1px solid #ffffff18;padding:24px 0;color:var(--muted);font-size:13px}@media(max-width:650px){.grid{grid-template-columns:1fr}.hero{padding-top:52px}}
+</style>
+</head>
+<body>
+<header class="wrap nav"><a class="brand" href="index.html"><span class="mark">A</span>ANA BLOCKCHAIN</a><nav><a href="status.html">Development status</a> · <a href="index.html">Home</a></nav></header>
+<main class="wrap">
+<section class="hero"><div class="eyebrow">ANA network explorer</div><h1>Explore the chain.<br>When the chain is ready.</h1><p class="muted">This is the explorer entry point for ANA. It is intentionally not showing sample blocks, fake transactions, placeholder balances, or invented network statistics.</p></section>
+<section class="panel" aria-live="polite"><div class="state"><span class="dot"></span>Not connected · API unavailable</div><h2>No verified node endpoint is published</h2><p class="muted">The current blockchain repository's main branch contains a single-process RandomX mining prototype. It does not yet provide a persistent canonical chain database or a read-only HTTP/RPC interface for explorer queries.</p><p class="muted">Until those components exist, this page cannot safely look up block heights, block hashes, transactions, addresses, or balances.</p></section>
+<div class="grid">
+<div class="tile"><strong>Blocks</strong><span>Unavailable — no chain database/API</span></div>
+<div class="tile"><strong>Transactions</strong><span>Unavailable — transaction ledger/API not implemented</span></div>
+<div class="tile"><strong>Addresses</strong><span>Unavailable — wallet and balance API not implemented</span></div>
+</div>
+<section class="panel"><h2>What must exist before live explorer data</h2><ol class="muted"><li>A validated, persistent chain database with deterministic block and transaction identifiers.</li><li>A read-only node API with documented schemas, pagination, and input limits.</li><li>Integration tests proving API responses match independently validated chain state.</li><li>A configured, monitored public testnet endpoint. The browser must never connect to an arbitrary untrusted node by default.</li></ol></section>
+<div class="actions"><a class="btn primary" href="https://github.com/Rajosreeranighosh/ANA-Blockchain">View blockchain source ↗</a><a class="btn" href="status.html">View development status</a><a class="btn" href="https://github.com/Rajosreeranighosh/ANA-Blockchain/issues">Track engineering work ↗</a></div>
+</main>
+<footer class="wrap footer">© 2026 ANA Blockchain · Experimental software · No live network data is currently available.</footer>
+</body></html>
