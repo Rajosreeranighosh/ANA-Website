@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090d18">
+<meta name="description" content="Understand the ANA Blockchain prototype architecture, peer transport work, current limitations, and engineering milestones.">
+<meta name="color-scheme" content="dark">
+<title>Architecture — ANA Blockchain</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<style>
+:root{color-scheme:dark;--bg:#090d18;--line:#25334b;--text:#edf3ff;--muted:#9eacc4;--cyan:#63e4df;--amber:#e8c27b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 75% 5%,#173454 0,transparent 34%),var(--bg);color:var(--text);font:16px/1.7 system-ui,-apple-system,Segoe UI,sans-serif}
+.wrap{width:min(1000px,calc(100% - 36px));margin:auto}a{color:var(--cyan);text-decoration:none}a:hover{text-decoration:underline}
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff18}.brand{color:var(--text);font-weight:850;letter-spacing:.12em}.mark{display:inline-grid;place-items:center;width:34px;height:34px;margin-right:9px;border:1px solid #63e4df88;border-radius:10px;color:var(--cyan)}
+.hero{padding:70px 0 35px}.eyebrow{color:var(--cyan);font-size:12px;font-weight:800;letter-spacing:.2em;text-transform:uppercase}.hero h1{font-size:clamp(40px,7vw,66px);line-height:1.05;letter-spacing:-.05em;margin:14px 0}.muted{color:var(--muted)}
+.banner{border:1px solid #e8c27b66;background:#e8c27b12;color:#f0dfbd;padding:17px 20px;border-radius:13px;margin:20px 0 32px}
+section{padding:30px 0;border-top:1px solid #ffffff18}h2{font-size:25px;letter-spacing:-.025em;margin:0 0 14px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.card{border:1px solid var(--line);border-radius:14px;background:linear-gradient(145deg,#141f33,#0e1625);padding:21px}.card h3{margin:0 0 8px;font-size:18px}.tag{font-size:11px;letter-spacing:.13em;font-weight:850;text-transform:uppercase;color:var(--cyan)}
+.list{padding-left:22px;color:var(--muted)}.list li{margin:8px 0}.links{display:flex;gap:18px;flex-wrap:wrap;margin:28px 0 50px}.footer{border-top:1px solid #ffffff18;padding:24px 0;color:var(--muted);font-size:13px}
+@media(max-width:650px){.grid{grid-template-columns:1fr}.hero{padding-top:50px}}
+</style>
+</head>
+<body>
+<header class="wrap nav"><a class="brand" href="index.html"><span class="mark">A</span>ANA BLOCKCHAIN</a><nav><a href="status.html">Status</a> · <a href="explorer.html">Explorer</a> · <a href="index.html">Home</a></nav></header>
+<main class="wrap">
+<section class="hero"><div class="eyebrow">Engineering overview</div><h1>Architecture, without the hype.</h1><p class="muted">A plain-language view of the ANA prototype: what the codebase is working on, what is still experimental, and what must be proven before a public network launch.</p></section>
+<div class="banner"><strong>Prototype status:</strong> ANA is not a production blockchain or mainnet. The descriptions below are engineering context, not guarantees of security, decentralization, uptime, or token value.</div>
+<section><h2>Current building blocks</h2><div class="grid">
+<article class="card"><div class="tag">Proof of work</div><h3>RandomX and Rust</h3><p class="muted">The project explores CPU-oriented RandomX proof of work in a Rust node implementation. Mining support alone does not establish a secure, fully validated consensus network.</p></article>
+<article class="card"><div class="tag">Node state</div><h3>Persistent local state</h3><p class="muted">The development node includes persistent state handling. A production-grade canonical chain database, recovery guarantees, and independently validated public chain data still need to be demonstrated.</p></article>
+<article class="card"><div class="tag">Peer communication</div><h3>Authenticated transport</h3><p class="muted">Mutual TLS 1.3 peer transport is being developed in <a href="https://github.com/Rajosreeranighosh/ANA-Blockchain/pull/41">draft PR #41</a>. It remains unmerged and requires passing cross-platform CI and security review.</p></article>
+<article class="card"><div class="tag">Internal protocol</div><h3>Node request handling</h3><p class="muted">The node development branch includes an authenticated TCP request protocol for internal node communication and queries. It is not a public browser-facing HTTP API and should not be exposed directly to website visitors.</p></article>
+</div></section>
+<section><h2>What is not ready yet</h2><ul class="list">
+<li>A public, monitored testnet endpoint with stable availability and operational ownership.</li>
+<li>A documented, read-only HTTP API or secure gateway for explorer queries.</li>
+<li>End-to-end multi-node synchronization tests and adversarial consensus testing.</li>
+<li>Demonstrated enforcement of the proposed 21,000,000 ANA supply limit under all valid chain transitions.</li>
+<li>Independent security review, incident response procedures, and production deployment controls.</li>
+</ul></section>
+<section><h2>Security boundary for the website</h2><p class="muted">A browser must never receive node private keys, peer certificates, node authentication tokens, or privileged peer-network credentials. The future explorer should query a narrowly scoped read-only service that validates data against canonical node state, applies strict rate and input limits, and exposes only public information.</p></section>
+<section><h2>Development checkpoints</h2><div class="grid">
+<article class="card"><div class="tag">Checkpoint 1</div><h3>Finish peer transport tests</h3><p class="muted">Pass Windows and Ubuntu CI, resolve findings, and obtain a focused security review before merge.</p></article>
+<article class="card"><div class="tag">Checkpoint 2</div><h3>Prove consensus and supply rules</h3><p class="muted">Test invalid blocks, reorg behavior, issuance boundaries, and multi-node agreement.</p></article>
+<article class="card"><div class="tag">Checkpoint 3</div><h3>Publish a safe read API</h3><p class="muted">Define stable schemas, pagination, access controls, and integration tests before building live explorer features.</p></article>
+<article class="card"><div class="tag">Checkpoint 4</div><h3>Operate a monitored testnet</h3><p class="muted">Only then publish verified network metrics and connect the website explorer to a known endpoint.</p></article>
+</div></section>
+<div class="links"><a href="https://github.com/Rajosreeranighosh/ANA-Blockchain">Blockchain source ↗</a><a href="https://github.com/Rajosreeranighosh/ANA-Blockchain/pull/41">Peer transport PR #41 ↗</a><a href="status.html">Current status ↗</a><a href="explorer.html">Explorer readiness ↗</a></div>
+</main>
+<footer class="wrap footer">© 2026 ANA Blockchain · Experimental software · <a href="index.html">Home</a></footer>
+</body></html>
