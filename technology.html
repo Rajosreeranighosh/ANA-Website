@@ -34,7 +34,7 @@ section{padding:30px 0;border-top:1px solid #ffffff18}h2{font-size:25px;letter-s
 </div></section>
 <section><h2>What is not ready yet</h2><ul class="list">
 <li>A public, monitored testnet endpoint with stable availability and operational ownership.</li>
-<li>A documented, read-only HTTP API or secure gateway for explorer queries.</li>
+<li>A documented, read-only HTTP gateway for status, account, and transaction queries; design is documented, implementation is not yet present.</li>
 <li>End-to-end multi-node synchronization tests and adversarial consensus testing.</li>
 <li>Demonstrated enforcement of the proposed 21,000,000 ANA supply limit under all valid chain transitions.</li>
 <li>Independent security review, incident response procedures, and production deployment controls.</li>
@@ -43,7 +43,7 @@ section{padding:30px 0;border-top:1px solid #ffffff18}h2{font-size:25px;letter-s
 <section><h2>Development checkpoints</h2><div class="grid">
 <article class="card"><div class="tag">Checkpoint 1</div><h3>Finish peer transport tests</h3><p class="muted">Pass Windows and Ubuntu CI, resolve findings, and obtain a focused security review before merge.</p></article>
 <article class="card"><div class="tag">Checkpoint 2</div><h3>Prove consensus and supply rules</h3><p class="muted">Test invalid blocks, reorg behavior, issuance boundaries, and multi-node agreement.</p></article>
-<article class="card"><div class="tag">Checkpoint 3</div><h3>Publish a safe read API</h3><p class="muted">Define stable schemas, pagination, access controls, and integration tests before building live explorer features.</p></article>
+<article class="card"><div class="tag">Checkpoint 3</div><h3>Implement the read-only gateway</h3><p class="muted">The <a href="https://github.com/Rajosreeranighosh/ANA-Blockchain/blob/ana-mtls-transport-v1/docs/public-read-api-gateway-v1.md">v1 gateway design</a> defines fixed upstream routing, read-only routes, validation, limits, and required tests. Implementation and review remain outstanding.</p></article>
 <article class="card"><div class="tag">Checkpoint 4</div><h3>Operate a monitored testnet</h3><p class="muted">Only then publish verified network metrics and connect the website explorer to a known endpoint.</p></article>
 </div></section>
 <div class="links"><a href="https://github.com/Rajosreeranighosh/ANA-Blockchain">Blockchain source ↗</a><a href="https://github.com/Rajosreeranighosh/ANA-Blockchain/pull/41">Peer transport PR #41 ↗</a><a href="status.html">Current status ↗</a><a href="explorer.html">Explorer readiness ↗</a></div>
