@@ -3,7 +3,7 @@ import { dirname, join, normalize, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const requiredPages = ["index.html", "status.html", "explorer.html", "technology.html", "404.html"];
+const requiredPages = ["index.html", "status.html", "explorer.html", "technology.html", "wallet.html", "404.html"];
 const errors = [];
 let checkedLinks = 0;
 
