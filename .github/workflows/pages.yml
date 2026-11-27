@@ -43,7 +43,7 @@ jobs:
       - name: Assemble public site
         run: |
           mkdir -p _site/assets
-          cp index.html status.html explorer.html 404.html script.js _site/
+          cp index.html status.html explorer.html technology.html 404.html script.js _site/
           cp -R assets/. _site/assets/
           cp robots.txt sitemap.xml _site/
       - name: Upload site artifact
